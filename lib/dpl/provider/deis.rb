@@ -104,11 +104,7 @@ module DPL
       end
 
       def controller_url
-        if option(:use_secure) == 'yes'
-          "https://#{option(:controller)}"
-        else
-          "http://#{option(:controller)}"
-        end
+        "https://#{option(:controller)}"
       end
     end
   end
