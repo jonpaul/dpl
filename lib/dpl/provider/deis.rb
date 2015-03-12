@@ -104,8 +104,8 @@ module DPL
       end
 
       def controller_url
-        if URI.parse("#{option(:controller)}").scheme
-          "#{option(:controller)}"
+        if option(:secure) == 'true'
+          "https://#{option(:controller)}"
         else
           "http://#{option(:controller)}"
         end
