@@ -1,3 +1,5 @@
+require 'uri'
+
 module DPL
   class Provider
     class Deis < Provider
