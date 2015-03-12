@@ -21,11 +21,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'json'
-
-  # prereleases from Travis CI
-  if ENV['CI']
-    digits = s.version.to_s.split '.'
-    digits[-1] = digits[-1].to_s.succ
-    s.version = digits.join('.') + ".travis.#{ENV['TRAVIS_JOB_NUMBER']}"
-  end
 end
