@@ -6,7 +6,8 @@ module DPL
       experimental 'Deis'
 
       def install_deploy_dependencies
-        self.class.pip 'deis', 'deis', options[:cli_version]
+        # self.class.pip 'deis', 'deis', options[:cli_version]
+        context.shell "curl -sSL http://deis.io/deis-cli/install.sh | sh -s #{option[:cli_version]}"
       end
 
       def needs_key?
@@ -14,7 +15,7 @@ module DPL
       end
 
       def check_auth
-        unless context.shell "deis login #{controller_url}" \
+        unless context.shell "./deis login #{controller_url}" \
                       " --username=#{option(:username)}" \
                       " --password=#{option(:password)}"
           error 'Login failed.'
@@ -22,13 +23,13 @@ module DPL
       end
 
       def check_app
-        unless context.shell "deis apps:info --app=#{option(:app)}"
+        unless context.shell "./deis apps:info --app=#{option(:app)}"
           error 'Application could not be verified.'
         end
       end
 
       def setup_key(file)
-        unless context.shell "deis keys:add #{file}"
+        unless context.shell "./deis keys:add #{file}"
           error 'Adding keys failed.'
         end
       end
@@ -45,7 +46,7 @@ module DPL
       end
 
       def remove_key
-        unless context.shell "deis keys:remove #{option(:key_name)}"
+        unless context.shell "./deis keys:remove #{option(:key_name)}"
           error 'Removing keys failed.'
         end
       end
@@ -58,7 +59,7 @@ module DPL
       end
 
       def run(command)
-        unless context.shell "deis apps:run #{command}"
+        unless context.shell "./deis apps:run #{command}"
           error 'Running command failed.'
         end
       end
