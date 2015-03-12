@@ -106,7 +106,6 @@ module DPL
         if URI.parse("#{option(:controller)}").scheme
           "#{option(:controller)}"
         else
-          raise StandardError, "Alright, this test worked."
           "http://#{option(:controller)}"
         end
       end
