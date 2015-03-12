@@ -7,7 +7,7 @@ module DPL
 
       def install_deploy_dependencies
         # self.class.pip 'deis', 'deis', options[:cli_version]
-        context.shell "curl -sSL http://deis.io/deis-cli/install.sh | sh -s #{option[:cli_version]}"
+        context.shell "curl -sSL http://deis.io/deis-cli/install.sh | sh -s #{option(:cli_version)}"
       end
 
       def needs_key?
