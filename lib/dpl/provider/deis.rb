@@ -101,7 +101,7 @@ module DPL
       end
 
       def controller_url
-        if URI.parse(option(:controller)).scheme
+        if URI.parse("#{option(:controller)}").scheme
           "#{option(:controller)}"
         else
           raise StandardError, "Alright, this test worked."
